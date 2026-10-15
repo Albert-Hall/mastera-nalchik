@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мастера Нальчика — проверенные услуги</title>
+  <meta name="description" content="Проверенные мастера Нальчика. Ремонт, строительство, перевозки и другие услуги.">
+  <style>
+    :root {
+      --bg: #101214;
+      --panel: #191c20;
+      --gold: #e5b85c;
+      --text: #f5f4ef;
+      --muted: #a4a8ad;
+      --line: #30343a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .hero {
+      min-height: 330px;
+      position: relative;
+      display: flex;
+      align-items: end;
+      padding: 32px max(22px, calc((100% - 1180px) / 2));
+      background:
+        linear-gradient(0deg, #101214 0%, rgba(16,18,20,.38) 65%, rgba(16,18,20,.1)),
+        url("https://gas-kvas.com/grafic/uploads/posts/2024-01/gas-kvas-com-p-oboi-goroda-nalchika-27.jpg") center 48% / cover;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-content { max-width: 780px; }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.04;
+      letter-spacing: -1.8px;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .hero p {
+      color: #e0e0dd;
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+      padding: 28px 22px 60px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .topline h2 { margin: 0; font-size: 24px; }
+
+    .city {
+      color: var(--gold);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .search {
+      width: 100%;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 15px 17px;
+      font: inherit;
+      outline: none;
+      margin-bottom: 18px;
+    }
+
+    .search:focus { border-color: var(--gold); }
+
+    .filters {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 26px;
+    }
+
+    .filter {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 10px 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      font: inherit;
+    }
+
+    .filter.active, .filter:hover {
+      background: var(--gold);
+      color: #171717;
+      border-color: var(--gold);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #78633c;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      background: #292d31;
+    }
+
+    .card-body { padding: 17px; }
+
+    .tag {
+      color: var(--gold);
+      font-size: 12px;
+      margin-bottom: 9px;
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 19px; }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0 0 17px;
+    }
+
+    .more {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .trust {
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: #15181b;
+    }
+
+    .trust h3 { margin: 0 0 7px; }
+    .trust p { color: var(--muted); margin: 0; line-height: 1.5; }
+
+    .contact {
+      display: inline-block;
+      background: var(--gold);
+      color: #171717;
+      padding: 13px 18px;
+      border-radius: 9px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .contact:hover { background: #f0cb7b; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
+    }
+
+    .empty {
+      display: none;
+      padding: 35px 10px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { min-height: 300px; }
+    }
+
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr; }
+      .card img { height: 230px; }
+      .topline { align-items: start; flex-direction: column; }
+      .trust { align-items: stretch; flex-direction: column; }
+      .contact { text-align: center; }
+      .hero { min-height: 300px; padding-bottom: 27px; }
+    }
+
+
+    .trust-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .whatsapp-link {
+      background: #25D366 !important;
+      color: #101810 !important;
+      border-color: #25D366 !important;
+    }
+
+    
+    .telegram-link {
+      background: #229ED9 !important;
+      color: #ffffff !important;
+      border-color: #229ED9 !important;
+    }
+
+
+    .footer-contacts {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .footer-contacts a {
+      color: #d8ad52;
+      text-decoration: none;
+    }
+
+    .footer-contacts a:hover {
+      text-decoration: underline;
+    }
+
+  
+  .top-contacts {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin: 0 0 16px;
+  }
+
+  .top-contacts a {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    transition: opacity 0.2s;
+  }
+
+  .top-contacts a:first-child {
+    background: #25D366;
+    color: #102014;
+  }
+
+  .top-contacts a:last-child {
+    background: #229ED9;
+  }
+
+  .top-contacts a:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 600px) {
+    .top-contacts {
+      justify-content: center;
+    }
+  }
+
+
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Моя личная рекомендация · Нальчик</div>
+      <h1>Мастера <span>Нальчика</span></h1>
+      <p>Я лично знаю мастеров. Каждый из них мне что-то чинил.<br>
+        Расскажите, что вам нужно, — я помогу с выбором.</p>
+    </div>
+
+    
+  <div class="top-contacts">
+    <a href="https://wa.me/79262832008" target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+    <a href="https://t.me/albert_mgu" target="_blank" rel="noopener">
+      Telegram
+    </a>
+  </div>
+  </header>
+
+  <main class="container">
+    <div class="topline">
+      <h2>Найдите своего мастера</h2>
+      <div class="city">● Нальчик, КБР</div>
+    </div>
+
+    <input id="search" class="search" type="search"
+      placeholder="Поиск: сантехник, электрик, перевозка…">
+
+    <nav class="filters" aria-label="Категории услуг">
+      <button class="filter active" data-category="Все">Все услуги</button>
+      <button class="filter" data-category="Дом и коммуникации">Дом и коммуникации</button>
+      <button class="filter" data-category="Строительство и ремонт">Строительство и ремонт</button>
+      <button class="filter" data-category="Перевозки и доставка">Перевозки и доставка</button>
+      <button class="filter" data-category="Техника и компьютеры">Техника и компьютеры</button>
+    </nav>
+
+    <section class="grid" id="catalog">
+
+      <article class="card" data-category="Дом и коммуникации"
+        data-search="канализация трубы засор прочистка слив">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Канализация.jpg"
+          alt="Инструменты для работы с трубами" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ДОМ И КОММУНИКАЦИИ</div>
+          <h3>Канализация и гидроизоляция</h3>
+          <p>Установка и замена труб; гидроизоляция стен и фундаментов</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Перевозки и доставка"
+        data-search="перевозки грузчики переезд мебель доставка груза">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Перевозка_2.jpeg"
+          alt="Подготовка вещей к перевозке" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ПЕРЕВОЗКИ И ДОСТАВКА</div>
+          <h3>Физические работы или перевозки</h3>
+          <p>Копать/Не копать, перевозка вещей, мебели и грузов по согласованию.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Перевозки и доставка"
+        data-search="курьер доставка документы посылка">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Красный мопед.jpeg"
+          alt="Курьерская доставка" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ПЕРЕВОЗКИ И ДОСТАВКА</div>
+          <h3>Курьер</h3>
+          <p>Доставка документов, еды, покупок и небольших отправлений.<br>
+            Нашему ястребу всегда светит зелёный светофор :)</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Строительство и ремонт"
+        data-search="строительство ремонт отделка плитка стены">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Строительство.jpeg"
+          alt="Строительные работы" loading="lazy">
+        <div class="card-body">
+          <div class="tag">СТРОИТЕЛЬСТВО И РЕМОНТ</div>
+          <h3>Строительство</h3>
+          <p>Сверление отверстий, отделочные и ремонтные работы.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Техника и компьютеры"
+      data-search="ремонт бытовой техники стиральная машина холодильник">
+      <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80"
+        alt="Мастер ремонтирует оборудование" loading="lazy">
+      <div class="card-body">
+        <div class="tag">ТЕХНИКА И КОМПЬЮТЕРЫ</div>
+        <h3>Ремонт бытовой техники</h3>
+        <p>Компьютеры, котлы, телевизоры, стиралки и пр.</p>
+        <div class="more">Подробнее →</div>
+      </div>
+    </article>
+
+      <article class="card" data-category="Дом и коммуникации"
+        data-search="сантехника сантехник трубы кран вода">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Сантехника.jpeg"
+          alt="Мужчина за работой с инструментами" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ДОМ И КОММУНИКАЦИИ</div>
+          <h3>Сантехника</h3>
+          <p>Установка, ремонт и обслуживание сантехнического оборудования.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Дом и коммуникации"
+        data-search="электрик электрика проводка розетки свет">
+        <img src="/Users/albert/Documents/mastera-nalchik/my images/Электрик.jpeg"
+          alt="Электрик выполняет работу" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ДОМ И КОММУНИКАЦИИ</div>
+          <h3>Электрика</h3>
+          <p>Монтаж проводки, установка розеток и поиск неисправностей.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Строительство и ремонт"
+        data-search="мебель изготовление шкаф стол кухня дерево">
+        <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=900&q=80"
+          alt="Мебель и столярные работы" loading="lazy">
+        <div class="card-body">
+          <div class="tag">СТРОИТЕЛЬСТВО И РЕМОНТ</div>
+          <h3>Изготовление мебели</h3>
+          <p>Изготовление мебели по размерам и индивидуальным пожеланиям.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+      <article class="card" data-category="Дом и коммуникации"
+        data-search="окна двери установка ремонт регулировка">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+          alt="Окна и двери в интерьере" loading="lazy">
+        <div class="card-body">
+          <div class="tag">ДОМ И КОММУНИКАЦИИ</div>
+          <h3>Окна и двери</h3>
+          <p>Установка, регулировка и ремонт окон и дверей.</p>
+          <div class="more">Подробнее →</div>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="empty" id="empty">Ничего не найдено. Попробуйте другой запрос.</div>
+
+    
+    <section class="trust">
+      <div>
+        <h3>Не знаете, кого выбрать?</h3>
+        <p>Напишите мне. Помогу подобрать мастера под вашу задачу.</p>
+      </div>
+      <div class="trust-contacts">
+        <a class="contact whatsapp-link"
+          href="https://wa.me/79262832008"
+          target="_blank" rel="noopener">
+          WhatsApp ↗
+        </a>
+        <a class="contact telegram-link"
+          href="https://t.me/albert_mgu"
+          target="_blank" rel="noopener">
+          Telegram ↗
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  
+<footer>
+  <div>Мастера Нальчика · Местные услуги, личный отбор</div>
+  <div class="footer-contacts">
+    <a href="https://wa.me/79262832008" target="_blank" rel="noopener">WhatsApp</a>
+    <span>·</span>
+    <a href="https://t.me/albert_mgu" target="_blank" rel="noopener">Telegram</a>
+  </div>
+</footer>
+
+
+  <script>
+    const search = document.getElementById("search");
+    const cards = [...document.querySelectorAll(".card")];
+    const filters = [...document.querySelectorAll(".filter")];
+    const empty = document.getElementById("empty");
+    let activeCategory = "Все";
+
+    function updateCatalog() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchesCategory =
+          activeCategory === "Все" ||
+          card.dataset.category === activeCategory;
+
+        const matchesSearch =
+          (card.innerText + " " + card.dataset.search)
+            .toLowerCase().includes(query);
+
+        const show = matchesCategory && matchesSearch;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      empty.style.display = visible ? "none" : "block";
+    }
+
+    search.addEventListener("input", updateCatalog);
+
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.category;
+        filters.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        updateCatalog();
+      });
+    });
+
+    // Позже сюда добавим твой личный Telegram username.
+    // Пример: const telegramUsername = "my_username";
+
+
+
+document.querySelectorAll('.card').forEach(card => {
+  card.style.cursor = 'pointer';
+
+  card.addEventListener('click', () => {
+    const title = card.querySelector('h3')?.textContent || 'Услуга';
+    const description = card.querySelector('p')?.textContent || '';
+
+    let modal = document.getElementById('service-modal');
+
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'service-modal';
+      modal.style.cssText = `
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(0,0,0,.8);
+        display: flex; align-items: center; justify-content: center;
+        padding: 20px;
+      `;
+
+      modal.innerHTML = `
+        <div style="
+          max-width: 480px; width: 100%; box-sizing: border-box;
+          background: #151923; color: #f5f5f5;
+          border: 1px solid #d8ad52; border-radius: 18px;
+          padding: 28px; position: relative;
+          font-family: inherit;
+        ">
+          <button id="service-modal-close" aria-label="Закрыть" style="
+            position: absolute; right: 14px; top: 12px;
+            background: transparent; border: 0;
+            color: #f5f5f5; font-size: 28px; cursor: pointer;
+          ">×</button>
+          <div style="color:#d8ad52; font-size:12px; letter-spacing:2px;">
+            МАСТЕРА НАЛЬЧИКА
+          </div>
+          <h2 id="service-modal-title" style="margin:14px 0;"></h2>
+          <p id="service-modal-description" style="line-height:1.7;"></p>
+          <a id="service-modal-whatsApp" href="#" target="_blank" rel="noopener"
+             style="
+               display:block; margin-top:24px; padding:14px;
+               text-align:center; text-decoration:none;
+               background:#d8ad52; color:#151923;
+               border-radius:10px; font-weight:bold;
+             ">Написать мне в WhatsApp</a>
+
+          <a id="service-modal-telegram" href="#" target="_blank" rel="noopener"
+             style="
+               display:block; margin-top:24px; padding:14px;
+               text-align:center; text-decoration:none;
+               background:#d8ad52; color:#151923;
+               border-radius:10px; font-weight:bold;
+             ">Связаться со мной в Telegram</a>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      modal.addEventListener('click', event => {
+        if (event.target === modal ||
+            event.target.id === 'service-modal-close') {
+          modal.remove();
+        }
+      });
+    }
+
+    const photo = card.querySelector('img');
+
+    let modalPhoto = modal.querySelector('#service-modal-photo');
+
+    if (!modalPhoto) {
+      modalPhoto = document.createElement('img');
+      modalPhoto.id = 'service-modal-photo';
+      modalPhoto.style.cssText =
+        'width:100%;height:210px;object-fit:cover;border-radius:12px;margin-top:18px;';
+      modal.querySelector('h2').before(modalPhoto);
+    }
+
+    modalPhoto.src = photo ? photo.src : '';
+    modalPhoto.alt = title;
+
+    modal.querySelector('#service-modal-title').textContent = title;
+    modal.querySelector('#service-modal-description').textContent = description;
+
+    // Добавим ссылку на Telegram на следующем шаге
+    modal.querySelector('#service-modal-whatsApp').href = 'https://wa.me/+79262832008';
+    modal.querySelector('#service-modal-telegram').href = 'https://t.me/albert_mgu';
+  });
+});
+
+  </script>
+</body>
+</html>
